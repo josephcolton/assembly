@@ -1,0 +1,40 @@
+
+Start gdb with the binary executable as an argument
+
+gdb text
+
+Next, set your break point at _start
+
+break _start
+
+Start the execution of the code with run
+
+run
+
+Change the layout to assembly
+
+layout asm
+
+You will note that the assembly does not match the nasm format exactly.  This is expected.
+
+You can increment through the code using the stepi command.
+
+stepi
+
+You can look at registers using the info register command.
+
+info register rax
+
+You can examine memory using the x option.  This can be by itself or you can optionally format the data using the f options.
+
+x
+x/fs 0xADDRESS - Display string
+x/fx 0xADDRESS - Display hex
+x/fi 0xADDRESS - Display instruction
+x/fd 0xADDRESS - Display decimal
+x/fc 0xADDRESS - Display character
+x/ff 0xADDRESS - Display float
+
+You can then exit the program using quit
+
+quit
