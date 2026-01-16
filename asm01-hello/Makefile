@@ -10,4 +10,4 @@ test: hello
 	./hello
 
 clean:
-	rm hello hello.o
+	rm -f hello hello.o *~
