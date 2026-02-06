@@ -23,7 +23,7 @@ loop:
 	jmp loop
 
 done:
-	; exit(0)
+	; exit(result)
 	mov rax, 60		; sys_exit
 	mov rdi, [result]	; rdi = result (exit code)
 	syscall
