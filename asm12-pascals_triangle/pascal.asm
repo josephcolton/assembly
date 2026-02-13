@@ -27,16 +27,17 @@ nextCol:
 	pop rcx			; Restore the number of rows
 
 	;; Print a space
-	mov rdi, ' '
+	mov rdi, ' '		; Space character
 	push rcx		; Save the number of rows	
 	call printchar
 	pop rcx			; Restore the number of rows
 
-	;; Next column - col++
-	inc r8 ; col++
+	;; Next column - column++
+	inc r8	    		; column++
 	cmp r8, r9		; if (current column <= current row) keep printing
 	jle nextCol
 
+	;; End the current row
 	;; Print a newline (end of the row)
 	mov rdi, 10		; Newline ASCII value
 	push rcx		; Save the number of rows
@@ -45,7 +46,7 @@ nextCol:
 
 	;; Increment the row index
 	inc r9			; row++
-	cmp r9, rcx		; if (row <= total rows) print next row
+	cmp r9, rcx		; if (current row <= total rows) print next row
 	jle nextRow
     
 	;; I guess we are done now
