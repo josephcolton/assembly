@@ -1,16 +1,15 @@
 	section .data
-	prompt db "Enter a number from 0 to 255? ",0
+	prompt db "Enter a number from 0 to 255: ",0
 	promptlen equ $ - prompt
 
 	section .bss
 	buffer resb 64		; Buffer for reading input
-	length resq 1		; Length of characters read
 
 	section .text
 	global _start
 
 _start:
-	;; Print name prompt
+	;; Print prompt for number
 	mov rax, 1		; sys_write
 	mov rdi, 1		; stdout
 	mov rsi, prompt		; Prompt string
@@ -23,10 +22,9 @@ _start:
 	mov rsi, buffer		; Buffer for reading data
 	mov rdx, 63		; Space to allow in buffer (-1 for null)
 	syscall
-	mov [length], rax	; Characters read in (includes newline)
 
 	;; Call atoi function
-	mov rdi, buffer		; Address of the entered number
+	mov rdi, buffer		; Address of the entered number string
 	call atoi		; Call the atoi function
 
 	;; Exit
@@ -35,9 +33,9 @@ _start:
 	syscall
 
 atoi:
-	;; Convert a string to an integer
-	;; Input: rdi - string address
-	;; Output: rax - Unsigned Integer value (-1 on error)
+	;; Convert a string to an unsigned integer
+	;; Input: rdi - number string address
+	;; Output: rax - Unsigned integer value (-1 on error)
 	xor rax, rax		; Value = 0
 
 atoi_convert:
