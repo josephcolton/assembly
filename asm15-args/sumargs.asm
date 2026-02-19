@@ -29,7 +29,7 @@ _start:
 
 next_arg:
 	mov rax, [index]	; Load the index
-	cmp rax, [count]	; if (index >= count) goto exit
+	cmp rax, [count]	; if (index >= count) goto done
 	jge done
 	
 	;; Get the number
