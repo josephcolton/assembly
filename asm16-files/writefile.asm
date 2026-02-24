@@ -32,7 +32,7 @@ _start:
 	syscall
 
 getinput:
-	;; Read file
+	;; Read standard in
 	mov rax, 0		; sys_read
 	mov rdi, 0		; stdin file descriptor
 	mov rsi, buffer		; Buffer for reading from file
