@@ -4,7 +4,7 @@
 	promptlen equ $ - prompt
 
 	section .bss
-	buffer resb 256		; Buffer for reading file
+	buffer resb 256		; Buffer for input from stdin
 	fd resq 1		; File descriptor variable
 	bytes resq 1		; Bytes read
 
@@ -35,7 +35,7 @@ getinput:
 	;; Read standard in
 	mov rax, 0		; sys_read
 	mov rdi, 0		; stdin file descriptor
-	mov rsi, buffer		; Buffer for reading from file
+	mov rsi, buffer		; Buffer for reading from stdin
 	mov rdx, 256		; Max bytes to read
 	syscall
 
@@ -48,7 +48,7 @@ getinput:
 	cmp byte [buffer], 10
 	je closefile
 
-	;; Print file contents
+	;; Write file contents
 	mov rax, 1		; sys_write
 	mov rdi, [fd]		; outfile file descriptor
 	mov rsi, buffer		; Buffer from stdin
